@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
-import {FlatList, Pressable, Text, View} from 'react-native';
-import Realm from 'realm';
+import React from 'react';
+import {FlatList, Text, View} from 'react-native';
 import RealmContext from '../models';
+import {Task} from '../models/Task';
 import Button from './Button';
 import SubtaskDisplay from './SubtaskDisplay';
 const {useRealm, useObject} = RealmContext;
 
-const TaskDisplay = ({task, idx}) => {
+const TaskDisplay = ({taskId, idx}) => {
   const realm = useRealm();
-
-  console.log('RE-RENDER subtask');
+  const task = useObject(Task, taskId);
 
   const handleAddSubtask = description => {
     realm.write(() => {
@@ -18,13 +17,22 @@ const TaskDisplay = ({task, idx}) => {
     });
   };
 
+  const deleteTask = () => {
+    realm.write(() => {
+      realm.delete(task);
+    });
+  };
+
   return (
     <View style={{borderWidth: 1, marginBottom: 4, padding: 4}}>
       <Text>Task #{idx}</Text>
-      <Button
-        title="Add Subtask"
-        onPress={() => handleAddSubtask('This is just a subtask')}
-      />
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Button
+          title="Add Subtask"
+          onPress={() => handleAddSubtask('This is just a subtask')}
+        />
+        <Button title="delete" onPress={deleteTask} />
+      </View>
       <FlatList
         data={task.subtasks}
         keyExtractor={item => item._id}

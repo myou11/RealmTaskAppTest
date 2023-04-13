@@ -6330,10 +6330,10 @@ readline@^1.3.0:
   resolved "https://registry.yarnpkg.com/readline/-/readline-1.3.0.tgz#c580d77ef2cfc8752b132498060dc9793a7ac01c"
   integrity sha512-k2d6ACCkiNYz222Fs/iNze30rRJ1iIicW7JuX/7/cozvih6YCkFZH+J6mAFDVgv0dRBaAyr4jDqC95R2y4IADg==
 
-realm@^11.5.0:
-  version "11.5.1"
-  resolved "https://registry.yarnpkg.com/realm/-/realm-11.5.1.tgz#b8715913bdaf6ed35ea2fffbc5fb5742077f09dc"
-  integrity sha512-bg0nOHW1dYbf0EsVa4GXr0n2AeABeyRUP5fwGww28zA8J3Oqow/IP/coCV6+chhVBjcqm6BfBWZn48lrEJmUXA==
+realm@^11.5.1:
+  version "11.8.0"
+  resolved "https://registry.yarnpkg.com/realm/-/realm-11.8.0.tgz#203dc02b74b313d68ba3831f42b2cb05a8b05882"
+  integrity sha512-c4NLKJs85CLY7wo4csIGcQRIjcAYI4FlVnxGkuzQR+uwwkGE1nPWKFBh+wPFPsPJXtZ1BBG4e3tt275ja/7SoA==
   dependencies:
     "@realm/common" "^0.1.4"
     "@realm/network-transport" "^0.7.2"

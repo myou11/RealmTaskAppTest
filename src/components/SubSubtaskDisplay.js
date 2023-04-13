@@ -1,18 +1,21 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import Realm from 'realm';
 import RealmContext from '../models';
 import Button from './Button';
 
 const SubSubtaskDisplay = ({subtask, subSubtask, idx}) => {
-  const {useRealm, useObject} = RealmContext;
+  const {useRealm} = RealmContext;
   const realm = useRealm();
-
-  console.log('RE-RENDER subSubtask');
 
   const randomizeDescription = () => {
     realm.write(() => {
       subSubtask.description = Math.random().toString();
+    });
+  };
+
+  const deleteSubSubtask = () => {
+    realm.write(() => {
+      realm.delete(subSubtask);
     });
   };
 
@@ -26,9 +29,10 @@ const SubSubtaskDisplay = ({subtask, subSubtask, idx}) => {
         borderColor: 'green',
       }}>
       <Text>SubSubtask #{idx}</Text>
+      <Text>Description: {subSubtask.description}</Text>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Text>Description: {subSubtask.description}</Text>
         <Button title="randomize" onPress={randomizeDescription} />
+        <Button title="delete" onPress={deleteSubSubtask} />
       </View>
     </View>
   );

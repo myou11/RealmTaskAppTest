@@ -19,7 +19,7 @@ export const App = () => {
     });
   };
 
-  console.log('RE-RENDER Task');
+  console.log(`RE-RENDER App`);
 
   return (
     <View>
@@ -30,7 +30,9 @@ export const App = () => {
       <FlatList
         data={tasks}
         keyExtractor={item => item._id.toString()}
-        renderItem={({item, index}) => <TaskDisplay task={item} idx={index} />}
+        renderItem={({item, index}) => (
+          <TaskDisplay taskId={item._id} idx={index} />
+        )}
       />
     </View>
   );

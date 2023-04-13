@@ -5,13 +5,19 @@ import Button from './Button';
 import SubSubtaskDisplay from './SubSubtaskDisplay';
 
 const SubtaskDisplay = ({task, subtask, idx}) => {
-  const {useRealm, useObject} = RealmContext;
+  const {useRealm} = RealmContext;
   const realm = useRealm();
 
   const handleAddSubSubtask = description => {
     realm.write(() => {
       const newSubSubtask = realm.create('SubSubtask', {description});
       subtask.subSubtasks.push(newSubSubtask);
+    });
+  };
+
+  const deleteSubtask = () => {
+    realm.write(() => {
+      realm.delete(subtask);
     });
   };
 
@@ -25,10 +31,13 @@ const SubtaskDisplay = ({task, subtask, idx}) => {
         borderColor: 'red',
       }}>
       <Text>Subtask #{idx}</Text>
-      <Button
-        title="Add SubSubtask"
-        onPress={() => handleAddSubSubtask('This is just a subSubtask')}
-      />
+      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Button
+          title="Add SubSubtask"
+          onPress={() => handleAddSubSubtask('This is just a subSubtask')}
+        />
+        <Button title="delete" onPress={deleteSubtask} />
+      </View>
       <FlatList
         data={subtask.subSubtasks}
         keyExtractor={item => item._id}
