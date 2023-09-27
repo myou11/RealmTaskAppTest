@@ -1,10 +1,9 @@
 import React from "react";
-import { FlatList, Task, Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import RealmContext from "../models";
 import Button from "./Button";
 import SubSubtaskDisplay from "./SubSubtaskDisplay";
-import { Subtask } from "../models/Subtask";
-import { SubSubtask } from "../models/SubSubtask";
+import { SubSubtask, Subtask } from "../models/Schemas";
 
 interface SubtaskDisplayProps {
   subtask: Subtask;
@@ -43,11 +42,9 @@ const SubtaskDisplay = ({ subtask, idx }: SubtaskDisplayProps) => {
         <Button title="Add SubSubtask" onPress={() => handleAddSubSubtask("This is just a subSubtask")} />
         <Button title="delete" onPress={deleteSubtask} />
       </View>
-      <FlatList
-        data={subtask.subSubtasks}
-        keyExtractor={(item) => item._id.toHexString()}
-        renderItem={({ item, index }) => <SubSubtaskDisplay subtask={subtask} subSubtask={item} idx={index} />}
-      />
+      {subtask.subSubtasks.map((subSubtask, index) => {
+        return <SubSubtaskDisplay key={subSubtask._id.toHexString()} subSubtask={subSubtask} idx={index} />;
+      })}
     </View>
   );
 };

@@ -2,16 +2,14 @@ import React from "react";
 import { Text, View } from "react-native";
 import RealmContext from "../models";
 import Button from "./Button";
-import { SubSubtask } from "../models/SubSubtask";
-import { Subtask } from "../models/Subtask";
+import { Subtask, SubSubtask } from "../models/Schemas";
 
 interface SubSubtaskDisplayProps {
-  subtask: Subtask;
   subSubtask: SubSubtask;
   idx: number;
 }
 
-const SubSubtaskDisplay = ({ subtask, subSubtask, idx }: SubSubtaskDisplayProps) => {
+const SubSubtaskDisplay = ({ subSubtask, idx }: SubSubtaskDisplayProps) => {
   const { useRealm } = RealmContext;
   const realm = useRealm();
 
