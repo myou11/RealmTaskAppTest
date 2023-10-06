@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { FlatList, Text, View, ViewProps } from "react-native";
+import React from "react";
+import { Text, View, ViewProps } from "react-native";
 import RealmContext from "../models";
 import { Store, Task } from "../models/Schemas";
 import Button from "./Button";

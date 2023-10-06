@@ -1,10 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import { Task, Subtask, SubSubtask, Store } from "./models/Schemas";
 import RealmContext from "./models";
 import TaskDisplay from "./components/TaskDisplay";
 import Button from "./components/Button";
-import { FlashList } from "@shopify/flash-list";
 
 const { useRealm, useObject, useQuery } = RealmContext;
 
@@ -72,9 +71,8 @@ export const App = () => {
       </View>
       {store && (
         <View style={{ height: "100%", width: "100%" }}>
-          <FlashList
+          <FlatList
             data={store.tasks}
-            estimatedItemSize={200}
             keyExtractor={(item) => item._id.toString()}
             renderItem={renderItem}
             contentContainerStyle={itemListContainerStyle}
